@@ -14,22 +14,28 @@ class WelcomeController < ApplicationController
   end
 
   def search_form
+    @statistic = []
+
     unless params[:search_start] && params[:search_end]
       params[:search_start] = Date.today.strftime('01-%m-%Y')
       params[:search_end]   = Date.today.strftime('01-%m-%Y')
     end
 
+    if params[:search_start] && params[:search_end] && params[:users]
+      search_start = Date.parse(params[:search_start])
+      search_end = Date.parse(params[:search_end])
+      user_ids = params[:users].select{|u| u if u.present?}
+      params[:users] = user_ids
 
-    @statistic = Statistic.all
+      @statistic = Statistic.where(day: search_start.beginning_of_month..search_end.end_of_month).where(user_id: user_ids).all
+    end
   end
 
   def search
     redirect_to search_form_path( { search_start: params[:search_start],
                                     search_end: params[:search_end],
-                                    user_ids: params[:user][:user_ids].map{|user_id| user_id if user_id.present?},
+                                    users: params[:users],
                                   } )
-
-    #User.find(params[:user][:user_ids].map{|user_id| user_id if user_id.present?})
   end
 
   def user_info

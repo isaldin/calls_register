@@ -9,7 +9,14 @@
       <%= text_field_tag :search_end, params[:search_end], class: 'input-sm form-control', id: 'search_end' %>
     </div>
 
-    <%= collection_check_boxes(:user, :user_ids, User.not_admin.all, :id, :phone) %>
+    <%#= collection_check_boxes(:user, :user_ids, User.not_admin.all, :id, :phone) %>
+    <% User.not_admin.all.each do |u| %>
+        <%= label_tag "user_#{u.id}", u.phone do %>
+            <%= u.phone %>
+            <%= check_box_tag 'users[]', u.id, params[:users] && params[:users].include?(u.id.to_s), id: "user_#{u.id}" %>
+        <% end %>
+    <% end %>
+
     <%= submit_tag 'search', class: 'btn' %>
 <% end -%>
 

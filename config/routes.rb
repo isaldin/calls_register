@@ -14,6 +14,8 @@ Src::Application.routes.draw do
 
   get 'user_info' => 'welcome#user_info', as: :user_info
 
+  post 'report' => 'welcome#report', as: :report
+
   resources :sessions_controllers
   resources :users
 

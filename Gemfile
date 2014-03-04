@@ -34,6 +34,8 @@ end
 
 gem 'bootstrap-datepicker-rails'
 
+gem 'axlsx_rails'
+
 gem "nifty-generators", :group => :development
 
 gem 'protected_attributes'

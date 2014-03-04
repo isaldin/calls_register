@@ -13,6 +13,27 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def report
+    respond_to do |format|
+      format.xlsx{
+        @statistic = []
+        search_start = ''
+        search_end = ''
+
+        if params[:search_start] && params[:search_end] && params[:users]
+          search_start = Date.parse(params[:search_start])
+          search_end = Date.parse(params[:search_end])
+          user_ids = params[:users].select{|u| u if u.present?}
+          params[:users] = user_ids
+
+          @statistic = Statistic.where(day: search_start.beginning_of_month..search_end.end_of_month).where(user_id: user_ids).all
+        end
+
+        render :xlsx => "report", :filename => "all_posts.xlsx", locals: { stata: @statistic, s: search_start, e: search_end }
+      }
+    end
+  end
+
   def search_form
     @statistic = []
 

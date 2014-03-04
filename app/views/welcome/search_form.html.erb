@@ -20,6 +20,10 @@
     <%= submit_tag 'search', class: 'btn' %>
 <% end -%>
 
+<% if @statistic.count > 0 %>
+    <%= link_to 'xls', report_path(format: :xlsx, search_start: params[:search_start], search_end: params[:search_end], users: params[:users]), method: :post, class: 'btn' %>
+<% end %>
+
 <table class="table">
   <thead>
   <tr>

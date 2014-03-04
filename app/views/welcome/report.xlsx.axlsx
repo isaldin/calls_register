@@ -1,0 +1,48 @@
+wb = xlsx_package.workbook
+
+s_margins =
+    {
+        left:   0.64/2.5,
+        right:  0.64/2.5,
+        top:    1.91/2.5,
+        bottom: 1.91/2.5,
+        header: 0.76/2.5,
+        footer: 0.76/2.5,
+    }
+
+s_setup = {:orientation => :portrait, :paper_size => 10}
+
+wb.add_worksheet(page_margins: s_margins, page_setup: s_setup) do |sheet|
+
+  PrintformBuilder::Builder.new(wb, sheet, stata, @s, @e) do
+
+    def a6; PrintformBuilder::Styles.new(sz: 6); end
+
+    row(
+        cell(:A_D, "С #{s.beginning_of_month.strftime('%d.%m.%Y')} по #{e.end_of_month.strftime('%d.%m.%Y')}", a9.b.center.middle.bordered._)
+    )
+
+    row(
+        cell(:A_A, 'Абонент', a8.center.bordered.b),
+        cell(:B_B, 'Дата', a8.center.bordered.b),
+        cell(:C_C, 'Кол-во звонков', a8.center.bordered.b),
+        cell(:D_D, 'Продолжительность', a8.center.b.bordered),
+    ).height = 11.25
+
+    @entity.each do |rec|
+      row(
+          cell(:A_A, rec.user.phone, a8.center.bordered),
+          cell(:B_B, rec.day.strftime('%d.%m.%Y'), a8.center.bordered),
+          cell(:C_C, rec.count, a8.center.bordered),
+          cell(:D_D, rec.duration, a8.center.bordered),
+      ).height = 11.25
+    end
+
+    empty_row 4.5
+
+    @sheet.column_widths(
+        *[150, 150, 150, 150].map{ |item| item / 7.9 }
+    )
+
+  end
+end

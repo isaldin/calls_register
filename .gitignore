@@ -15,7 +15,7 @@
 /log/*.log
 /tmp
 /.idea
-
+Gemfile.lock
 .ruby-gemset
 .ruby-gemset.02.28.2014-20:54:49
 .ruby-gemset.02.28.2014-20:58:47

@@ -48,7 +48,7 @@ class WelcomeController < ApplicationController
       user_ids = params[:users].select{|u| u if u.present?}
       params[:users] = user_ids
 
-      @statistic = Statistic.where(day: search_start.beginning_of_month..search_end.end_of_month).where(user_id: user_ids).all
+      @statistic = Statistic.where(day: search_start.beginning_of_month..search_end.end_of_month).where(user_id: user_ids).order('user_id, day')
     end
   end
 

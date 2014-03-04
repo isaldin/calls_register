@@ -31,6 +31,7 @@
     <td>date</td>
     <td>count</td>
     <td>duration</td>
+    <td>last update</td>
   </tr>
   </thead>
   <tbody>
@@ -40,6 +41,7 @@
         <td><%= record.day.strftime('%d.%m.%Y') %></td>
         <td><%= record.count %></td>
         <td><%= record.duration %></td>
+        <td><%= record.updated_at.strftime('%d.%m.%Y %H:%M') %></td>
       </tr>
   <% end %>
   </tbody>

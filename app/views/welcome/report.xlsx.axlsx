@@ -14,7 +14,7 @@ s_setup = {:orientation => :portrait, :paper_size => 10}
 
 wb.add_worksheet(page_margins: s_margins, page_setup: s_setup) do |sheet|
 
-  PrintformBuilder::Builder.new(wb, sheet, stata, @s, @e) do
+  PrintformBuilder::Builder.new(wb, sheet, stata, s, e) do
 
     def a6; PrintformBuilder::Styles.new(sz: 6); end
 

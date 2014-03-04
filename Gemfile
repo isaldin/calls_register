@@ -32,12 +32,16 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'bootstrap-datepicker-rails'
+
 gem "nifty-generators", :group => :development
 
 gem 'protected_attributes'
 
 # Use ActiveModel has_secure_password
 gem "bcrypt-ruby", :require => "bcrypt"
+
+gem "twitter-bootstrap-rails"
 
 # Use unicorn as the app server
 # gem 'unicorn'

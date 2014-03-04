@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  day: 2014-02-28
+  seconds: 1
+  user_id: 1
+
+two:
+  day: 2014-02-28
+  seconds: 1
+  user_id: 1

@@ -1,0 +1,44 @@
+<%= form_tag search_path, method: :post, class: 'form form-horizontal', id: 'search_form' do -%>
+
+    <div class="input-daterange input-group" id="datepicker">
+      <!--<input type="text" class="input-sm form-control" name="search" id="search_start" />-->
+      <%= text_field_tag :search_start, params[:search_start], class: 'input-sm form-control', id: 'search_start' %>
+
+      <span class="input-group-addon">to</span>
+
+      <%= text_field_tag :search_end, params[:search_end], class: 'input-sm form-control', id: 'search_end' %>
+    </div>
+
+    <%= collection_check_boxes(:user, :user_ids, User.not_admin.all, :id, :phone) %>
+    <%= submit_tag 'search', class: 'btn' %>
+<% end -%>
+
+<table class="table">
+  <thead>
+  <tr>
+    <td>number</td>
+    <td>date</td>
+    <td>count</td>
+    <td>duration</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @statistic.each do |record| %>
+      <tr>
+        <td><%= record.user.phone %></td>
+        <td><%= record.day.strftime('%d.%m.%Y') %></td>
+        <td><%= record.count %></td>
+        <td><%= record.duration %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $('.input-daterange').datepicker({
+        format: "dd-mm-yyyy",
+        minViewMode: 1,
+        language: "ru",
+        autoclose: true
+    });
+</script>

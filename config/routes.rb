@@ -1,9 +1,19 @@
 Src::Application.routes.draw do
-  get "welcome/index"
-  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get "auth/auth"
+  get 'welcome/index'
+
   get 'signup' => 'users#new', :as => :signup
   get 'logout' => 'sessions_controllers#destroy', :as => :logout
   get 'login' => 'sessions_controllers#new', :as => :login
+
+  post '/export' => 'statistic#index', as: :export_data
+  post '/auth' => 'auth#auth'
+
+  get 'search' => 'welcome#search_form', as: :search_form
+  post 'search' => 'welcome#search', as: :search
+
+  get 'user_info' => 'welcome#user_info', as: :user_info
+
   resources :sessions_controllers
   resources :users
 

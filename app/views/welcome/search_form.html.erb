@@ -9,12 +9,20 @@
       <%= text_field_tag :search_end, params[:search_end], class: 'input-sm form-control', id: 'search_end' %>
     </div>
 
-    <%#= collection_check_boxes(:user, :user_ids, User.not_admin.all, :id, :phone) %>
+    <br/>
+    <div class="checkbox">
+      <label for="check_all">
+        <input type="checkbox" name="check_all" id="check_all"/>
+        <b>Выделить все</b>
+      </label>
+    </div>
     <% User.not_admin.all.each do |u| %>
-        <%= label_tag "user_#{u.id}", u.phone do %>
-            <%= u.phone %>
-            <%= check_box_tag 'users[]', u.id, params[:users] && params[:users].include?(u.id.to_s), id: "user_#{u.id}" %>
-        <% end %>
+        <div class="checkbox">
+          <%= label_tag "user_#{u.id}", u.phone do %>
+              <%= check_box_tag 'users[]', u.id, params[:users] && params[:users].include?(u.id.to_s), id: "user_#{u.id}" %>
+              <%= u.phone  %> <i><%= "(#{u.email}, #{u.name})" %></i>
+          <% end %>
+        </div>
     <% end %>
 
     <%= submit_tag 'search', class: 'btn' %>
@@ -53,5 +61,9 @@
         minViewMode: 1,
         language: "ru",
         autoclose: true
+    });
+
+    $('#check_all').click(function(){
+        $('input[name="users[]"]').prop('checked', $(this).prop('checked'));
     });
 </script>

@@ -8,7 +8,7 @@ class AuthController < ApplicationController
 
     user = User.authenticate login, password
     if user
-      render json: {success: true, login: user.username}
+      render json: {success: true, login: user.email}
     else
       render json: {success: false, error: 'Invalid login data'}
     end

@@ -48,7 +48,7 @@
           </a>
           <a class="brand" href="<%= root_path %>">Call register</a>
           <div class="container nav-collapse">
-            <ul class="nav">
+            <ul class="nav pull-right">
               <% if logged_in? %>
                   <li><%= link_to 'Log out', logout_path  %></li>
               <% else %>
@@ -69,16 +69,20 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
+                <li>
+                  <a href="http://swf-neark.ru" target="_blank"><img src="swf-neark.png" alt=""/></a>
+                </li>
+                <li style="text-align: center;">
+                  <a href="http://www.neark.kz/" target="_blank"><img src="neark.png" alt=""/></a>
+                </li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
         </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; SWF - Space weather forecasting 2014 <br/> при поддержке НИАРК </p>
       </footer>
 
     </div> <!-- /container -->

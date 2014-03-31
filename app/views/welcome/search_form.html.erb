@@ -18,9 +18,9 @@
     </div>
     <% User.not_admin.all.each do |u| %>
         <div class="checkbox">
-          <%= label_tag "user_#{u.id}", u.phone do %>
+          <%= label_tag "user_#{u.id}", u.email do %>
               <%= check_box_tag 'users[]', u.id, params[:users] && params[:users].include?(u.id.to_s), id: "user_#{u.id}" %>
-              <%= u.phone  %> <i><%= "(#{u.email}, #{u.name})" %></i>
+              <%= u.email  %> <i><%= "(#{u.name})" %></i>
           <% end %>
         </div>
     <% end %>
@@ -45,7 +45,7 @@
   <tbody>
   <% @statistic.each do |record| %>
       <tr>
-        <td><%= record.user.phone %></td>
+        <td><%= record.user.email %></td>
         <td><%= record.day.strftime('%d.%m.%Y') %></td>
         <td><%= record.count %></td>
         <td><%= record.duration %></td>

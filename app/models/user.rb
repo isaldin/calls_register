@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :statistics
 
   # new columns need to be added here to be writable through mass assignment
-  attr_accessible :email, :name, :phone, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation
 
   attr_accessor :password
   before_save :prepare_password
@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :email, :phone
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => 'incorrect format of email'
-  validates_format_of :phone, :with => /\A[0-9]{11}\z/
+  #validates_format_of :phone, :with => /\A[0-9]{11}\z/
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 4

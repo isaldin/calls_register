@@ -31,7 +31,7 @@ wb.add_worksheet(page_margins: s_margins, page_setup: s_setup) do |sheet|
 
     @entity.each do |rec|
       row(
-          cell(:A_A, rec.user.phone, a8.center.bordered),
+          cell(:A_A, rec.user.email, a8.center.bordered),
           cell(:B_B, rec.day.strftime('%d.%m.%Y'), a8.center.bordered),
           cell(:C_C, rec.count, a8.center.bordered),
           cell(:D_D, rec.duration, a8.center.bordered),

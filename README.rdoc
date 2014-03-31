@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version 2.x
+* Rails version 4.x
 
-Things you may want to cover:
+db/development.sqlite3 -- DB
 
-* Ruby version
+Для установки НАЧИСТУЮ (все данные потрутся): 
+в папке проекта выполнить поочередно
+bundle install -- установка gem'ов
+bundle exec rake db:{drop,create,migrate,seed} -- создаст БД с нуля с нужной структурой, добавит админа и несколько тестовых записей
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Старт проекта:
+также в папке проекта
+rails s -p 80 -d (запустит сервер на порту 80 как демона)

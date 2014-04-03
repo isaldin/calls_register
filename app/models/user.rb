@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :email
   validates_presence_of :name
-  validates_uniqueness_of :email, :phone
+  validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => 'incorrect format of email'
   #validates_format_of :phone, :with => /\A[0-9]{11}\z/
   validates_presence_of :password, :on => :create
